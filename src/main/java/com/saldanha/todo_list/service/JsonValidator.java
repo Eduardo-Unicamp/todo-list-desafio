@@ -26,7 +26,7 @@ public class JsonValidator {
     }
 
     private Boolean assureRequiredFields(Task task){
-        if(task.getName()==null || task.getName().isEmpty() || task.getDone()==null){
+        if(task.getTitle()==null || task.getTitle().isEmpty() || task.getStatus()==null){
             throw new EmptyRequiredFieldsException();
         }
         return true;

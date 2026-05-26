@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
@@ -20,16 +18,11 @@ public class User {
     @Column(name = "user_id")
     private UUID userId;
 
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id" )
-    private List<Task> tasks = new ArrayList<>();
 
-    //
-    public void addTask(Task task){
-        tasks.add(task);
-    }
-    public void removeTask(Task task){tasks.remove(task);}
 }
