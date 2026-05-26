@@ -26,7 +26,7 @@ public class TaskController {
 
     @PostMapping()
     public ResponseEntity<Void> addTask( @RequestBody Task task){
-        userService.addTask(task);
+        taskService.addTask(task);
         return ResponseEntity.status(201).build();
     }
 
@@ -36,14 +36,14 @@ public class TaskController {
 
     @GetMapping("/{taskId}")
     public ResponseEntity<Task> getTask(@PathVariable UUID taskId){
-        return ResponseEntity.status(200).body(userService.getTask(taskId));
+        return ResponseEntity.status(200).body(taskService.getTask(taskId));
     }
 
 
 
     @PutMapping("/{taskId}")
     public ResponseEntity<String> putTask(@PathVariable UUID taskId, @RequestBody Task newTask){
-        userService.updateTask(taskId,newTask);
+        taskService.updateTask(taskId,newTask);
         return ResponseEntity.ok("Task changed");
     }
 
@@ -51,7 +51,7 @@ public class TaskController {
 
     @DeleteMapping("/{taskId}")
     public ResponseEntity<String> deleteTask( @PathVariable UUID taskId){
-        userService.deleteTask(taskId);
+        taskService.deleteTask(taskId);
         return ResponseEntity.ok(String.format("Task %s removed",taskId));
     }
 
