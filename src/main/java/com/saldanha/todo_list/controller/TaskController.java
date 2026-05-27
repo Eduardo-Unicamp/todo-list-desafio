@@ -1,10 +1,12 @@
 package com.saldanha.todo_list.controller;
 
+import com.saldanha.todo_list.dtos.TaskDTO;
 import com.saldanha.todo_list.entity.Task;
 import com.saldanha.todo_list.service.TaskService;
 import com.saldanha.todo_list.service.UserService;
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,8 +27,8 @@ public class TaskController {
 
 
     @PostMapping()
-    public ResponseEntity<Void> addTask( @RequestBody Task task){
-        taskService.addTask(task);
+    public ResponseEntity<Void> addTask( @Validated @RequestBody TaskDTO dto){
+        taskService.addTask(dto);
         return ResponseEntity.status(201).build();
     }
 
@@ -42,8 +44,8 @@ public class TaskController {
 
 
     @PutMapping("/{taskId}")
-    public ResponseEntity<String> putTask(@PathVariable UUID taskId, @RequestBody Task newTask){
-        taskService.updateTask(taskId,newTask);
+    public ResponseEntity<String> putTask(@PathVariable UUID taskId, @Validated @RequestBody TaskDTO dto){
+        taskService.updateTask(taskId,dto);
         return ResponseEntity.ok("Task changed");
     }
 

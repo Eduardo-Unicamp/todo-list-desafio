@@ -1,9 +1,11 @@
 package com.saldanha.todo_list.controller;
 
+import com.saldanha.todo_list.dtos.UserDTO;
 import com.saldanha.todo_list.entity.User;
 import com.saldanha.todo_list.service.UserService;
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,8 +25,8 @@ public class UserController {
     }
 
     @PostMapping()
-    public ResponseEntity<String> addUser(@RequestBody User user){
-        userService.addUser(user);
+    public ResponseEntity<String> addUser(@Validated @RequestBody UserDTO dto){
+        userService.addUser(dto);
         return ResponseEntity.status(201).body("User created");
     }
 
@@ -35,8 +37,8 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<String> putUser(@PathVariable UUID userId,@RequestBody User user){
-        userService.putUser(userId,user);
+    public ResponseEntity<String> putUser(@PathVariable UUID userId, @Validated @RequestBody UserDTO dto){
+        userService.putUser(userId,dto);
         return ResponseEntity.ok("User updated ");
     }
 
@@ -45,5 +47,8 @@ public class UserController {
         userService.deleteUser(userId);
         return ResponseEntity.ok(String.format("User %s deleted",userId));
     }
+
+
+
 
 }

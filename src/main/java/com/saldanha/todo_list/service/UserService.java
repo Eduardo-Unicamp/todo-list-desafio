@@ -1,11 +1,13 @@
 package com.saldanha.todo_list.service;
 
+import com.saldanha.todo_list.dtos.UserDTO;
 import com.saldanha.todo_list.entity.Task;
 import com.saldanha.todo_list.entity.User;
 import com.saldanha.todo_list.exception.TaskNotFoundException;
 import com.saldanha.todo_list.exception.UserNotFoundException;
 import com.saldanha.todo_list.repository.TaskRepository;
 import com.saldanha.todo_list.repository.UserRepository;
+import com.saldanha.todo_list.service.mapper.UserMapper;
 import lombok.Data;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -19,11 +21,12 @@ import java.util.UUID;
 public class UserService {
     private final UserRepository userRepository;
     private final TaskRepository taskRepository;
+    //MapStruct
+    private final UserMapper userMapper;
 
-    //a fazer: adicionar validações do json
-    //remove task
 
-    public void addUser(User user) {
+    public void addUser(UserDTO dto){
+        User user = userMapper.dtoToUser(dto);
         userRepository.save(user);
     }
 
@@ -43,16 +46,16 @@ public class UserService {
 
 
 
-    public void putUser(UUID userId, User userData) {
-        userData.setUserId(userId);
-        userRepository.save(userData);
+    public void putUser(UUID userId, UserDTO dto) {
+        User user = userMapper.dtoToUser(dto);
+        user.setUserId(userId);
+        userRepository.save(user);
     }
 
     public void deleteUser(UUID userId) {
 
         userRepository.deleteById(userId);
     }
-
 
 
 
