@@ -24,6 +24,10 @@ public class TaskController {
     public ResponseEntity<List<Task>> listTasks(){
         return ResponseEntity.ok(taskService.listPublicTasks());
     }
+    @GetMapping("/from/{userId}")
+    public ResponseEntity<List<Task>> listTasks(@PathVariable UUID userId){
+        return ResponseEntity.ok(taskService.listPublicAndThisUserTasks(userId));
+    }
 
 
     @PostMapping()
