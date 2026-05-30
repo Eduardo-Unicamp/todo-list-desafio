@@ -9,12 +9,8 @@ import com.saldanha.todo_list.repository.TaskRepository;
 import com.saldanha.todo_list.repository.UserRepository;
 import com.saldanha.todo_list.service.mapper.TaskMapper;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,7 +34,7 @@ public class TaskService {
 
     public List<Task> listPublicAndThisUserTasks(UUID userId){
         //should list public, the ones this user owns and the ones he is a participant
-        return taskRepository.listAvaiableTasksForUser(userId);
+        return taskRepository.listAvailableTasksForUser(userId);
     }
 
 

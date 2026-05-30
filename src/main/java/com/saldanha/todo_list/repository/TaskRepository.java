@@ -14,7 +14,7 @@ public interface TaskRepository extends JpaRepository<Task, UUID> {
             "WHERE t.owner.userId = :userId " +
             "OR p.userId = :userId " +
             "OR t.isPublic = true")
-    public List<Task> listAvaiableTasksForUser(@Param("userId") UUID userId);
+    public List<Task> listAvailableTasksForUser(@Param("userId") UUID userId);
 
     List<Task> findByIsPublicTrue();
 }
