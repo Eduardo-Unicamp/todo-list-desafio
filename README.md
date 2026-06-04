@@ -1,0 +1,1 @@
+A Todo list era para ser o"Hello World!" do desenvolvimento backend, só que dessa vez com bem mais do que apenas um CRUD simples: Tarefas com visibilidade pública e privada, gerenciamento de participantes, salvamento de arquivos em banco remoto com Supabase, e autenticação stateless com tokens JWT. 
