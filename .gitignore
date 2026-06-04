@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+#to ignore
+src/test/resources/application-test.properties
